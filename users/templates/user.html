@@ -1,0 +1,145 @@
+{% load static%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEXILOT</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" media='screen and (min-width: 900px)' href="{% static 'css/main.css' %}">
+    <link rel='stylesheet' media='screen and (max-width: 900px)' href="{% static 'css/main_mobile.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @media (min-width: 900px) {
+            #signup_cont{
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+                width: 50vw;
+                height:54vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                background-image: url("{% static 'css/signin.png' %}");
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-size: cover;
+            }
+        }
+        @media (max-width: 900px) {
+            #signup_cont{
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+                width: 85vw;
+                height:65vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                background-image: url("{% static 'css/signin.png' %}");
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-size: cover;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <header id="header">
+        <div id="header_p1">
+            <a href="{% url 'landing' %}" id="logo_link"><img id="logo" src="{% static 'img/logo.svg' %}" alt="logo"></a>
+            <div id="nav">
+                <input type="checkbox" id="active">
+                <label for="active" class="menu-btn"><span></span></label>
+                <label for="active" class="close"></label>
+                <div class="wrapper">
+                  <ul>
+                      <li><a href="{% url 'category' %}" onclick="$('html, body').animate({scrollTop: $('#plans').offset().top}, 2000);">Templates</a></li>
+                      <li><a href="{% url 'landing' %}" onclick="$('html, body').animate({scrollTop: $('#prices_title').offset().top}, 2000);">Pricing</a></li>
+                    <li><a href="{% url 'landing' %}">Help</a></li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+        {% if not request.user.is_authenticated %}
+            <div id="dashboard" class="onHover">sign up</div>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <div id="profile_btn" class="onHover">Profile</div>
+        {% endif %}
+    </header>
+
+    <section id="big_cont3">
+        <div id="profile_wrapper">
+            <div id="profile_header">
+                <div id="profile_title">My Webpages</div>
+                <a href="{% url 'category' %}" style="text-decoration: none;"><div id="creat_website" class="onHover">Creat website</div></a>
+            </div>
+            <div id="webpages">
+                <div id="no_website">Nothing created yet</div>
+            </div>
+            <div id="logout_wrapper">
+                <svg id="logout_img" width="28" height="23" viewBox="0 0 28 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.330498 10.5377C0.313263 10.5606 0.294981 10.5829 0.27879 10.6062C0.262598 10.6301 0.249012 10.6539 0.234386 10.6778C0.221329 10.6991 0.207748 10.7194 0.195736 10.7412C0.182156 10.7661 0.170666 10.7914 0.158131 10.8163C0.147684 10.8386 0.135672 10.8609 0.125746 10.8843C0.115822 10.9081 0.107464 10.933 0.0980625 10.9578C0.0891819 10.9827 0.079258 11.007 0.0709 11.0329C0.0635872 11.0578 0.0578423 11.0826 0.0515747 11.1075C0.0447845 11.1334 0.0369492 11.1593 0.0317268 11.1851C0.02598 11.2146 0.0223293 11.2445 0.0176296 11.2744C0.0144958 11.2967 0.010313 11.3186 0.00822449 11.3409C-0.00274467 11.4464 -0.00274467 11.5529 0.00822449 11.659C0.010313 11.6818 0.0144958 11.7031 0.0176296 11.7255C0.0223293 11.7554 0.02598 11.7848 0.0317268 11.8147C0.0369492 11.8411 0.0447845 11.8665 0.0515747 11.8924C0.0578423 11.9172 0.0635872 11.9421 0.0709 11.9669C0.079258 11.9923 0.0891819 12.0172 0.0980625 12.042C0.107464 12.0669 0.115822 12.0913 0.125746 12.1156C0.135672 12.1389 0.147684 12.1613 0.158131 12.1836C0.170666 12.209 0.182156 12.2338 0.195736 12.2587C0.207748 12.2805 0.221329 12.3013 0.234386 12.3221C0.249012 12.3459 0.262598 12.3703 0.27879 12.3931C0.294981 12.417 0.313263 12.4393 0.330498 12.4621C0.345646 12.4814 0.359224 12.5007 0.374895 12.52C0.409889 12.5611 0.446451 12.6001 0.484581 12.6377L10.6677 22.5285C11.3145 23.1572 12.3635 23.1572 13.0102 22.5285C13.657 21.9004 13.657 20.8817 13.0102 20.2536L5.65503 13.109L26.3435 13.109C27.2584 13.109 28 12.3886 28 11.4997C28 10.6113 27.2584 9.89085 26.3435 9.89085L5.65503 9.89085L13.0102 2.74631C13.657 2.11821 13.657 1.09944 13.0102 0.470826C12.6867 0.156774 12.2626 0 11.8389 0C11.4149 0 10.9912 0.156774 10.6677 0.470826L0.484581 10.3622C0.446451 10.3997 0.409889 10.4388 0.374895 10.4799C0.359224 10.4987 0.345646 10.5185 0.330498 10.5377Z" fill="white"/>
+                </svg> 
+                <a href="{% url 'logout_user' %}"><div id="logout">Log out</div></a>              
+            </div>
+        </div>
+    </section>
+    <div id="signup_page" >
+        <div id="signup_cont">
+            <div id="signup_p1">
+                <img src="{% static 'img/logo2.svg' %}" id="signup_logo" alt="">
+                <div id="other_login">
+                    <div id="f_login">sign in with facebook</div>
+                    <div id="g_login">sign in with google</div>
+                </div> 
+            </div>
+            <div id="signup_p2">
+                <div id="login_title_wrapper">
+                    <div id="signup_title">Sign Up</div>
+                    <div id="signin_title">Sign In</div>
+                </div>
+                <form action="" name='signup' method="POST" id="logup">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <input type="submit" value="sign up">
+                </form>
+                <form action="" name='signup' method="POST" id="login">
+                    {% csrf_token %}
+                    {{form2|crispy}}
+                    <input type="submit" value="sign up">
+                </form>
+            </div>
+            <div id="other_login2">
+                <div id="f_login2">sign in with facebook</div>
+                <div id="g_login2">sign in with google</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script src="{% static 'js/category.js' %}" defer></script>
+    <script src="{% static 'js/signin.js' %}" defer></script>
+
+</body>
+</html>

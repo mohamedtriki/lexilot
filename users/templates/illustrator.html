@@ -1,0 +1,160 @@
+{% load static%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEXILOT</title>
+    <link rel="icon" href="img/logo.svg">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" media='screen and (min-width: 900px)' href="{% static 'css/category.css' %}">
+    <link rel='stylesheet' media='screen and (max-width: 900px)' href="{% static 'css/category_mobile.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @media (min-width: 900px) {
+            #signup_cont{
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+                width: 50vw;
+                height:54vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                background-image: url("{% static 'css/signin.png' %}");
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-size: cover;
+            }
+        }
+        @media (max-width: 900px) {
+            #signup_cont{
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+                width: 85vw;
+                height:65vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                background-image: url("{% static 'css/signin.png' %}");
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-size: cover;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <header id="header">
+        <div id="header_p1">
+            <a href="{% url 'landing' %}" id="logo_link"><img id="logo" src="{% static 'img/logo.svg' %}" alt="logo"></a>
+            <div id="nav">
+                <input type="checkbox" id="active">
+                <label for="active" class="menu-btn"><span></span></label>
+                <label for="active" class="close"></label>
+                <div class="wrapper">
+                  <ul>
+                      <li><a href="{% url 'category' %}" onclick="$('html, body').animate({scrollTop: $('#plans').offset().top}, 2000);">Templates</a></li>
+                      <li><a href="{% url 'landing' %}" onclick="$('html, body').animate({scrollTop: $('#prices_title').offset().top}, 2000);">Pricing</a></li>
+                    <li><a href="{% url 'landing' %}">Help</a></li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+        {% if not request.user.is_authenticated %}
+            <div id="dashboard" class="onHover">sign up</div>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'profile' %}" style="text-decoration: none;"><div id="profile_btn" class="onHover">Profile</div></a>
+        {% endif %}
+    </header>
+
+    <section id="big_cont_cat">
+        <div id="sub_wrapper">
+            <div id="sub_title">best templates for phtography :</div>
+            <div id="sub_pages_wrapper">
+                <div class="page_model">
+                    <div class="model_star" title="advanced template">
+                        <img src="{% static 'img/star.png' %}" alt="">
+                    </div>
+                    <div class="page_model_top">
+                        <img src="{% static 'img/img2.png' %}" alt="">
+                    </div>
+                    <div class="page_model_bottom">
+                        <div class="model_name">Bailard</div>
+                        <div class="model_edit onHover">Edit</div>
+                    </div>
+                </div>
+                <div class="page_model">
+                    <div class="model_star" title="advanced template">
+                        <img src="{% static 'img/star.png' %}" alt="">
+                    </div>
+                    <div class="page_model_top">
+                        <img src="{% static 'img/img3.png' %}" alt="">
+                    </div>
+                    <div class="page_model_bottom">
+                        <div class="model_name">Bailard</div>
+                        <div class="model_edit onHover">Edit</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <div id="signup_page" >
+        <div id="signup_cont">
+            <div id="signup_p1">
+                <img src="{% static 'img/logo2.svg' %}" id="signup_logo" alt="">
+                <div id="other_login">
+                    <div id="f_login">sign in with facebook</div>
+                    <div id="g_login">sign in with google</div>
+                </div> 
+            </div>
+            <div id="signup_p2">
+                <div id="login_title_wrapper">
+                    <div id="signup_title">Sign Up</div>
+                    <div id="signin_title">Sign In</div>
+                </div>
+                <form action="" name='signup' method="POST" id="logup">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <input type="submit" value="sign up">
+                </form>
+                <form action="" name='signup' method="POST" id="login">
+                    {% csrf_token %}
+                    {{form2|crispy}}
+                    <input type="submit" value="sign up">
+                </form>
+            </div>
+            <div id="other_login2">
+                <div id="f_login2">sign in with facebook</div>
+                <div id="g_login2">sign in with google</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script src="{% static 'js/category.js' %}" defer></script>
+    <script src="{% static 'js/signin.js' %}" defer></script>
+
+</body>
+</html>

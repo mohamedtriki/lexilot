@@ -1,0 +1,96 @@
+
+.fa-trash{
+    display: none;
+}
+.fa-download{
+    display: none;
+}
+
+.fa-code{
+    display: none;
+}
+.fa-arrows-alt{
+    display: none;
+}
+.fa-floppy-o1:before{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 16px;
+    content: "Sign up";
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color:#5E48E8 ;
+}
+.fa-floppy-o2:before{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 16px;
+    content: "Deploy";
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color:#F9A0DE ;
+}
+.fa-floppy-o3:before{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 16px;
+    content: "Upgrade";
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color:#de7d16 ;
+}
+.fa-floppy-o4:before{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 16px;
+    content: "Upgrade";
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color:#de7d16 ;
+}
+
+
+.gjs-pn-btn:nth-child(9):hover{
+    opacity:0.9
+}
+
+body{
+    background-color:rgb(74, 90, 113)
+
+}
+.gjs-one-bg{
+    background-color:rgb(30, 36, 46,0.6) !important
+}
+.gjs-pn-panels{
+    background-color:rgb(30, 36, 46,0.6) !important
+}
+.gjs-layer-title ,.gjs-layer-no-chld{
+    background-color:rgb(30, 36, 46,0.8) !important
+}
+.gjs-title{
+    background-color:rgb(30, 36, 46,0.8) !important
+}
+
+html:root {
+    --theme-color: #f56dcc;
+}
+.gjs-cv-canvas {
+    background-color:rgb(30, 36, 46,0.8) !important
+
+}
+.fa:before {
+    -webkit-text-stroke:0px #fff !important;
+}
+.gjs-block.fa:before, .gjs-pn-btn.fa:before {
+    color: #dcdcdc !important;
+}
+.gjs-device-label{
+    color: #8f909f !important;
+    font-size:14px
+}
+.gjs-select option{
+    color: #8f909f !important;
+}
+.gjs-clm-tags .gjs-clm-field input, .gjs-clm-tags .gjs-clm-field select, .gjs-clm-tags .gjs-sm-field input, .gjs-clm-tags .gjs-sm-field select, .gjs-cm-editor#gjs-cm-css #gjs-cm-title, .gjs-cm-editor#gjs-cm-htmlmixed #gjs-cm-title, .gjs-color-warn, .gjs-four-color, .gjs-sm-sector .gjs-clm-field input, .gjs-sm-sector .gjs-clm-field select, .gjs-sm-sector .gjs-sm-field input, .gjs-sm-sector .gjs-sm-field select, .gjs-two-color {
+    color: #8f909f !important;
+}

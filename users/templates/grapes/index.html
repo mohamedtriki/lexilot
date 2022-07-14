@@ -1,0 +1,522 @@
+{% load static%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEXILOT</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'grapes/css/grapesjs-preset-webpage.min.css' %}">
+    <link rel="stylesheet" href="{% static 'grapes/css/edit.css' %}">
+    <link rel="stylesheet" href="{% static 'grapes/css/layout.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css"rel="stylesheet"/>
+    <script src="https://unpkg.com/grapesjs"></script>
+    <script src="{% static 'grapes/js/lib/grapesjs-preset-webpage.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+    @media (min-width: 900px) {
+        #signup_cont{
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+            width: 50vw;
+            height:54vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-image: url("{% static 'css/signin.png' %}");
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-size: cover;
+        }
+        #domain_box_page{
+          background-image: url("{% static 'css/signin.png' %}");
+          background-repeat: no-repeat;
+          background-size: auto;
+          background-size: cover;
+          position: relative;
+          top:50%;
+          left:50%;
+          transform: translate(-50%, -50%);
+          padding: 50px;
+          border-radius: 16px;
+          filter: drop-shadow(12px 12px 5px rgba(0, 0, 0, 0.5));
+          width: max-content;
+          height: max-content;
+        }
+        #upgrade_wrapper_page,#upgrade_wrapper_page2{
+          background-image: url("{% static 'css/signin.png' %}");
+          background-repeat: no-repeat;
+          background-size: auto;
+          background-size: cover;
+          position: relative;
+          top:50%;
+          left:50%;
+          transform: translate(-50%, -50%);
+          padding: 50px 0px 50px 50px;
+          border-radius: 16px;
+          filter: drop-shadow(12px 12px 5px rgba(0, 0, 0, 0.5));
+          width: max-content;
+          height: max-content;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        
+    }
+    @media (max-width: 900px) {
+        #signup_cont{
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+            width: 85vw;
+            height:65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-image: url("{% static 'css/signin.png' %}");
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-size: cover;
+        }
+        #domain_box_page{
+          background-image: url("{% static 'css/signin.png' %}");
+          background-repeat: no-repeat;
+          background-size: auto;
+          background-size: cover;
+          position: relative;
+          top:50%;
+          left:50%;
+          transform: translate(-50%, -50%);
+          padding: 50px;
+          border-radius: 16px;
+          filter: drop-shadow(12px 12px 5px rgba(0, 0, 0, 0.5));
+          width: max-content;
+          height: max-content;
+        }
+        #upgrade_wrapper_page,#upgrade_wrapper_page2{
+          background-image: url("{% static 'css/signin.png' %}");
+          background-repeat: no-repeat;
+          background-size: auto;
+          background-size: cover;
+          position: relative;
+          top:100%;
+          left:50%;
+          transform: translate(-50%, -50%);
+          padding: 50px 0px 50px 20px;
+          border-radius: 16px;
+          filter: drop-shadow(12px 12px 5px rgba(0, 0, 0, 0.5));
+          width: max-content;
+          height: max-content;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+    }
+  </style>
+
+
+
+  <body>
+    <div id="gjs" style="height: 0px; overflow: hidden">
+    </div>
+
+
+
+    <div id="domain_box_wrapper">
+      <div id="domain_box_page">
+        <div id="domain_box">
+          <div id="alert">* Please check the availability of your domain name before submitting your request <span><a href="https://www.namecheap.com/domains/domain-name-search/?gclid=CjwKCAjwq5-WBhB7EiwAl-HEkoF1Ep4G14-Rnqfy1nwSRclVod4GQc7porCY-7T3P6lBpk8mZosZbRoCPp8QAvD_BwE" target="_blank">click here</a></span></div>
+          <label for="name">Website name</label>
+          <input type="text" name="name" id="name" placeholder="Enter your website name">
+          <label for="domain_name">Domain name</label>
+          <input type="text" name="domain_name" id="domain_name" placeholder="Enter your domain name">
+          <div id="domain_btn">Deploy</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="upgrade_wrapper">
+      <div id="upgrade_wrapper_page">
+        <div id="upgrade_title">Upgrade you plan !</div>
+        <div id="plans">
+          <div class="price" id="price1">
+              <div class="price_title" id="price_title1">basic</div>
+              <div class="paln_price">99$/one time</div>
+              <div class="feautres">
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">basic templates</div>
+                  </div>
+                  <div class="feautre" class='feautre_domain'>
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des" >free custom domain</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">24/7 support</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des cross">advanced templates</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des cross">Hire a developer</div>
+                  </div>
+              </div>
+              <div class="buy onHover" id="buy1">Buy</div>
+          </div>
+          <div class="price" id="price2">
+              <div id="popular">POPULAR</div>
+              <div class="price_title" id="price_title2">pro</div>
+              <div class="paln_price">199$/one time</div>
+              <div id="feautres">
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">basic templates</div>
+                  </div>
+                  <div class="feautre"  class='feautre_domain'>
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">free custom domain</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">24/7 support</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">advanced templates</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des cross">Hire a developer</div>
+                  </div>
+              </div>
+              <div class="buy onHover" id="buy2" >Buy</div>
+          </div>
+          <div class="price" id="price3">
+              <div class="price_title" id="price_title3">business</div>
+              <div class="paln_price">249$/one time</div>
+              <div id="feautres">
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">basic templates</div>
+                  </div>
+                  <div class="feautre"  class='feautre_domain'>
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">free custom domain</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">24/7 support</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">advanced templates</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">Hire a developer</div>
+                  </div>
+              </div>
+              <div class="buy onHover" id="buy3">Buy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="upgrade_wrapper2">
+      <div id="upgrade_wrapper_page2">
+        <div id="upgrade_title">Upgrade you plan !</div>
+        <div id="plans">
+          <div class="price" id="price12">
+              <div class="price_title" id="price_title1">basic</div>
+              <div class="paln_price">99$/one time</div>
+              <div class="feautres">
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">basic templates</div>
+                  </div>
+                  <div class="feautre" class='feautre_domain'>
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des" >free custom domain</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">24/7 support</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des cross">advanced templates</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des cross">Hire a developer</div>
+                  </div>
+              </div>
+              <div  id="buy12">Buy</div>
+          </div>
+          <div class="price" id="price2">
+              <div id="popular">POPULAR</div>
+              <div class="price_title" id="price_title2">pro</div>
+              <div class="paln_price">99$/one time</div>
+              <div id="feautres">
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">basic templates</div>
+                  </div>
+                  <div class="feautre"  class='feautre_domain'>
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">free custom domain</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">24/7 support</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">advanced templates</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des cross">Hire a developer</div>
+                  </div>
+              </div>
+              <div class="buy onHover" id="buy2" >Buy</div>
+          </div>
+          <div class="price" id="price3">
+              <div class="price_title" id="price_title3">business</div>
+              <div class="paln_price">149$/one time</div>
+              <div id="feautres">
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">basic templates</div>
+                  </div>
+                  <div class="feautre"  class='feautre_domain'>
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">free custom domain</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">24/7 support</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">advanced templates</div>
+                  </div>
+                  <div class="feautre">
+                      <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                      <div class="feautre_des">Hire a developer</div>
+                  </div>
+              </div>
+              <div class="buy onHover" id="buy3">Buy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="signup_page" >
+      <div id="signup_cont">
+          <div id="signup_p1">
+              <img src="{% static 'img/logo2.svg' %}" id="signup_logo" alt="">
+              <div id="other_login">
+                  <div id="f_login">sign in with facebook</div>
+                  <div id="g_login">sign in with google</div>
+              </div> 
+          </div>
+          <div id="signup_p2">
+              <div id="login_title_wrapper">
+                  <div id="signup_title">Sign Up</div>
+                  <div id="signin_title">Sign In</div>
+              </div>
+              <form action="" name='signup' method="POST" id="logup">
+                  {% csrf_token %}
+                  {{form|crispy}}
+                  <input type="submit" value="sign up">
+              </form>
+              <form action="" name='signup' method="POST" id="login">
+                  {% csrf_token %}
+                  {{form2|crispy}}
+                  <input type="submit" value="sign up">
+              </form>
+          </div>
+          <div id="other_login2">
+              <div id="f_login2">sign in with facebook</div>
+              <div id="g_login2">sign in with google</div>
+          </div> 
+      </div>
+    </div>
+
+
+
+    <form action="" name='page' method="POST" style="display:none">
+      {% csrf_token %}
+      <input type="text" id="html_input" name="html" value="">
+      <input type="text" id="css_input" name="css" value="">
+      <input type="text" id="domain_input" name="domain" value="">
+      <input type="text" id="name_input" name="name" value="">
+    </form>
+    <script type="text/javascript">
+      var editor = grapesjs.init({
+        height: "100%",
+        showOffsets: 1,
+        noticeOnUnload: 0,
+        storageManager: {},
+        container: "#gjs",
+        fromElement: true,
+        styleManager: {},
+        plugins: ["gjs-preset-webpage"],
+        pluginsOpts: {
+          "gjs-preset-webpage": {},
+        },
+      });
+    </script>
+    {% if not request.user.is_authenticated %}
+    <script>
+      editor.Panels.addButton('options', [ { id: 'signup', className: 'fa fa-floppy-o1 icon-blank', command: function(editor1, sender) {
+        document.getElementById('signup_cont').style.opacity=0
+        document.getElementById('signup_page').style.display="flex"
+        gsap.fromTo('#signup_cont',{opacity:0,scale:0.6},{opacity:1,scale:1})
+        document.documentElement.style.overflow="hidden";
+      }, attributes: { title: 'Sign In' } }, ]);
+    </script>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+      {% if request.user.profile.plan == "business" or request.user.profile.plan == "pro"%}
+        <script>
+          editor.Panels.addButton('options', [ { id: 'Deploy', className: 'fa fa-floppy-o2 icon-blank', command: function(editor1, sender) {
+            var html =editor.getHtml()
+            var css =editor.getCss()
+            document.getElementById("html_input").value = html;
+            document.getElementById("css_input").value = css;
+            // document.forms["page"].submit(); 
+            var html =editor.getHtml()
+            var css =editor.getCss()
+            document.getElementById("html_input").value = html;
+            document.getElementById("css_input").value = css;
+            // document.getElementsByTagName("html").style.overflow = "hidden";
+            document.getElementById("domain_box_wrapper").style.display = "block";
+            gsap.fromTo('#domain_box_page',{opacity:0,scale:0.6},{opacity:1,scale:1})
+
+            document.getElementById("domain_btn").addEventListener("click", function(){
+              domain= document.getElementById("domain_name").value;
+              document.getElementById("domain_input").value = domain;
+              name= document.getElementById("name").value;
+              document.getElementById("name_input").value = name;
+              document.forms["page"].submit();
+            });
+            }, attributes: { title: 'Deploy Site' } }, ]);
+        </script>
+      {% elif request.user.profile.plan == "basic" %}
+        <script>
+          editor.Panels.addButton('options', [ { id: 'upgrade1', className: 'fa fa-floppy-o3 icon-blank', command: function(editor1, sender) {
+            document.getElementById('upgrade_wrapper2').style.display="block"
+            gsap.fromTo('#upgrade_wrapper_page2',{opacity:0,scale:0.6},{opacity:1,scale:1})
+            // document.documentElement.style.overflow="hidden";
+          }, attributes: { title: 'Upgrade Plan1' } }, ]);
+        </script> 
+      {% else%} 
+        <script>
+          editor.Panels.addButton('options', [ { id: 'upgrade2', className: 'fa fa-floppy-o4 icon-blank', command: function(editor1, sender) {
+            document.getElementById('upgrade_wrapper').style.display="block"
+            gsap.fromTo('#upgrade_wrapper_page',{opacity:0,scale:0.6},{opacity:1,scale:1})
+            // document.documentElement.style.overflow="hidden";
+          }, attributes: { title: 'Upgrade Plan2' } }, ]);
+        </script> 
+      {% endif %}
+    {% endif %}
+      <script>
+          document.getElementById('signup_page').addEventListener('click',function(){
+            var lexilot= document.getElementById('lexilot');
+            var isClickInsideElement = document.getElementById('signup_cont').contains(event.target);
+            if (!isClickInsideElement) {
+                document.getElementById('signup_page').style.display="none"
+                document.documentElement.style.overflow="scroll";
+                if (lexilot.style.display=="none"){
+                    $("html").getNiceScroll().show();
+            
+                }
+            }
+          })
+          document.getElementById('upgrade_wrapper').addEventListener('click',function(){
+            var isClickInsideElement = document.getElementById('upgrade_wrapper_page').contains(event.target);
+            if (!isClickInsideElement) {
+                document.getElementById('upgrade_wrapper').style.display="none"
+                document.documentElement.style.overflow="scroll";
+                if (lexilot.style.display=="none"){
+                    $("html").getNiceScroll().show();
+            
+                }
+            }
+          })
+          document.getElementById('upgrade_wrapper2').addEventListener('click',function(){
+            var isClickInsideElement = document.getElementById('upgrade_wrapper_page2').contains(event.target);
+            if (!isClickInsideElement) {
+                document.getElementById('upgrade_wrapper2').style.display="none"
+                document.documentElement.style.overflow="scroll";
+                if (lexilot.style.display=="none"){
+                    $("html").getNiceScroll().show();
+                }
+            }
+          })
+          document.getElementById('domain_box_wrapper').addEventListener('click',function(){
+            var isClickInsideElement = document.getElementById('domain_box_page').contains(event.target);
+            if (!isClickInsideElement) {
+                document.getElementById('domain_box_wrapper').style.display="none"
+                document.documentElement.style.overflow="scroll";
+                if (lexilot.style.display=="none"){
+                    $("html").getNiceScroll().show();
+            
+                }
+            }
+          })
+
+
+        document.getElementById('signin_title').addEventListener('click',function(){
+            document.getElementById('signup_title').style.color='#BBBBBB'
+            document.getElementById('signup_title').style.borderBottom= "0px solid #F9A0DE"
+            document.getElementById('signin_title').style.color='#FFFFFF'
+            document.getElementById('signin_title').style.borderBottom= "3px solid #F9A0DE"
+            document.getElementById('logup').style.display='none'
+            document.getElementById('login').style.display='block'
+
+
+        })
+        document.getElementById('signup_title').addEventListener('click',function(){
+            document.getElementById('signin_title').style.color='#BBBBBB'
+            document.getElementById('signin_title').style.borderBottom= "0px solid #F9A0DE"
+            document.getElementById('signup_title').style.color='#FFFFFF'
+            document.getElementById('signup_title').style.borderBottom= "3px solid #F9A0DE"
+            document.getElementById('login').style.display='none'
+            document.getElementById('logup').style.display='block'
+
+        })            
+      </script>
+  </body>
+</html>

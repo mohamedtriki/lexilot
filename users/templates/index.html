@@ -1,0 +1,389 @@
+{% load static%}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEXILOT</title>
+    <link rel="icon" href="{% static 'img/logo.svg' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" media='screen and (min-width: 900px)' href="{% static 'css/main.css' %}">
+    <link rel='stylesheet' media='screen and (max-width: 900px)' href="{% static 'css/main_mobile.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @media (min-width: 900px) {
+            #signup_cont{
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+                width: 50vw;
+                height:54vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                background-image: url("{% static 'css/signin.png' %}");
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-size: cover;
+            }
+        }
+        @media (max-width: 900px) {
+            #signup_cont{
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
+                width: 85vw;
+                height:65vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                background-image: url("{% static 'css/signin.png' %}");
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-size: cover;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="lexilot">
+        <svg id="lexilot_logo" width="383" height="143" viewBox="0 0 353 103" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="line" d="M173 34.8173C173.333 21.4839 180 -5.18273 190.5 3.81728C194 8.31727 194 8.31727 198 18.3173L200 22.8173C201 24.5 201.038 25.3173 204 21.8173C209.5 15.3173 233 -7.18273 240.5 6.81727C248 20.8173 249 45.8173 254 43.3173C259 40.8173 260 10.8173 272 12.8173C284 14.8173 294 32.8173 303.5 27.8173C313 22.8173 324 -13.1827 337 10.8173C350 34.8173 349 63.8173 351.5 67.3173" stroke="black" stroke-width="3"/>
+            <path id="path10" d="M311 51H325" stroke="white" stroke-width="13"/>
+            <path id="path9" d="M303 31V53.5906V77.1033C303.468 84.4798 305.915 96.0057 322.085 93.7005C324.043 92.9628 327.011 92.1537 327.5 92" stroke="white" stroke-width="16"/>
+            <path id="path8" d="M278 74C278 85.1111 268.888 94 257.5 94C246.112 94 237.001 85.1111 237 74C236.999 62.8889 246.111 54 257.5 54C268.889 54 278 62.8889 278 74Z" stroke="white" stroke-width="16"/>
+            <path id="path7" d="M200 26V50.5V76C200.479 84 202.979 96.5 219.5 94C221.5 93.2 223 92.6667 223.5 92.5" stroke="white" stroke-width="16"/>
+            <path id="path6" d="M178 35C178 37.7778 176 40 173.5 40C171 40 169 37.7778 169 35C169 32.2222 171 30 173.5 30C176 30 178 32.2222 178 35Z" stroke="white" stroke-width="10"/>
+            <path id="path5" d="M173 48V102" stroke="white" stroke-width="16"/>
+            <path id="path4" d="M106 45L126.755 71.566L106 98.1321" stroke="white" stroke-width="14"/>
+            <path id="path3" d="M147.755 45L127 71.566L147.755 98.1321" stroke="white" stroke-width="14"/>
+            <path id="path2" d="M84.1094 88.2846C80.276 92.4513 70.3293 97.858 58.1094 93.7846C41.6097 88.2846 37.1728 63.184 52.1094 52.7846C66.6853 42.6363 82.6095 54.2846 85.1095 71.2846C69.5095 74.4846 54.2762 77.2846 48.6095 78.2846" stroke="white" stroke-width="13"/>
+            <path id="path" d="M8 26V50.5V76C8.47852 84 10.9785 96.5 27.5 94C29.5001 93.2 31.0001 92.6667 31.5001 92.5" stroke="white" stroke-width="16"/>
+        </svg>
+    </div>
+    <header id="header">
+        <div id="header_p1">
+            <a href="{% url 'landing' %}" id="logo_link"><img id="logo" src="{% static 'img/logo.svg' %}" alt="logo"></a>
+            <div id="nav">
+                <input type="checkbox" id="active">
+                <label for="active" class="menu-btn"><span></span></label>
+                <label for="active" class="close"></label>
+                <div class="wrapper">
+                  <ul>
+                      <li><a href="{% url 'category' %}" onclick="$('html, body').animate({scrollTop: $('#plans').offset().top}, 2000);">Templates</a></li>
+                      <li><a href="#" onclick="$('html, body').animate({scrollTop: $('#prices_title').offset().top}, 2000);">Pricing</a></li>
+                    <li><a href="#">Help</a></li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+        {% if not request.user.is_authenticated %}
+            <div id="dashboard" class="onHover">sign up</div>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'profile' %}"  style="text-decoration: none;"><div id="profile_btn" class="onHover">Profile</div></a>
+        {% endif %}
+    </header>
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <section id="big_cont">
+        <div id="cont1">
+            <div id="cont1_p1">
+                <div id="p1_wrapper">
+                    <div class="title_wrap">
+                        <div class="left-text title">Create a </div>
+                        <div class="right-text title">
+                            <div class="flip-wrap">
+                                <div class="flip">portfolio</div>
+                                <div class="flip">website</div>
+                                <div class="flip">portfolio</div>
+                                <div class="flip">website</div>
+                                <div class="flip">portfolio</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="title" class="title"> you're proud of</div>
+                    <!-- <div id="title">Create a <p style="display:inline"></p> you're proud of</div> -->
+                    <div id="disc">The leading online website builder for creative professionals</div>
+                    <a href="{% url 'category' %}" style="text-decoration:none"><div id="get_started" class="onHover">get started</div></a>
+                </div>
+            </div>
+            <div id="cont1_p2">
+                <img id="character" src="{% static 'img/character.png' %}" alt="">
+                <!-- <div id='model1_cont'>
+                    <canvas id="model1"></canvas>		
+                </div> -->
+                <img src="{% static 'img/float.gif' %}" id="model1" alt="">
+            </div>
+        </div>
+        <div id="cont2">
+            <div id="cont2_p1">
+                <!-- <div id='model2_cont'>
+                    <canvas id="model2"></canvas>		
+                </div> -->
+                <img src="{% static 'img/done.gif' %}" id="model2" alt="">
+            </div>
+            <div id="cont2_p2">
+                <div id="steps_title">build your portfolio in 3 easy steps !</div>
+                <div id="steps_wrapper">
+                    <svg width="50" height="387" viewBox="0 0 50 387" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25.0003 170C11.193 170 0 181.192 0 195.001C0 208.807 11.193 220 25.0003 220C38.807 220 50 208.807 50 195.001C50 181.192 38.807 170 25.0003 170Z" fill="#BC95FB"/>
+                        <path d="M32.2259 202.812C31.8223 202.497 31.2369 202.339 30.4692 202.339H22.7635C23.0094 201.965 23.2506 201.645 23.4869 201.38C24.0379 200.711 25.0539 199.771 26.5352 198.56C28.0162 197.35 29.0717 196.462 29.7016 195.896C30.3314 195.33 30.949 194.547 31.5543 193.548C32.1595 192.55 32.4621 191.44 32.4621 190.22C32.4621 189.442 32.3168 188.692 32.0267 187.969C31.7363 187.245 31.3303 186.608 30.8088 186.057C30.2871 185.506 29.6819 185.073 28.9931 184.758C27.9302 184.285 26.6459 184.049 25.1403 184.049C23.8904 184.049 22.8005 184.234 21.8705 184.603C20.9406 184.972 20.1729 185.457 19.5676 186.057C18.9624 186.657 18.5071 187.326 18.2022 188.064C17.897 188.803 17.7445 189.511 17.7445 190.19C17.7445 190.751 17.9069 191.194 18.2317 191.519C18.5565 191.844 18.9647 192.006 19.4569 192.006C20.0178 192.006 20.4434 191.829 20.7338 191.475C21.0239 191.12 21.2848 190.614 21.5162 189.954C21.7473 189.295 21.9123 188.891 22.0107 188.744C22.7488 187.612 23.7623 187.046 25.0517 187.046C25.6618 187.046 26.2253 187.184 26.7419 187.459C27.2585 187.735 27.6668 188.121 27.9671 188.618C28.2672 189.115 28.4173 189.679 28.4173 190.308C28.4173 190.889 28.2771 191.482 27.9966 192.087C27.7162 192.692 27.3076 193.283 26.7714 193.858C26.2349 194.434 25.5632 195.008 24.7564 195.578C24.3036 195.883 23.5508 196.521 22.4979 197.49C21.4447 198.459 20.2638 199.623 18.955 200.981C18.64 201.316 18.3498 201.776 18.084 202.361C17.8183 202.947 17.6855 203.417 17.6855 203.771C17.6855 204.322 17.8922 204.802 18.3054 205.21C18.7188 205.619 19.2944 205.823 20.0326 205.823H30.8974C31.5469 205.823 32.0315 205.656 32.3515 205.321C32.6711 204.987 32.8313 204.578 32.8313 204.096C32.8312 203.555 32.6293 203.127 32.2259 202.812Z" fill="white"/>
+                        <path d="M25.0003 0.000244141C11.193 0.000244141 0 11.192 0 25.0005C0 38.8066 11.193 49.9996 25.0003 49.9996C38.807 49.9996 50 38.8066 50 25.0005C50 11.192 38.807 0.000244141 25.0003 0.000244141Z" fill="#F9A0DE"/>
+                        <path d="M28.0926 14.6544C27.7776 14.251 27.3594 14.0492 26.8378 14.0492C26.3752 14.0492 26.0603 14.1378 25.8931 14.3149C25.7256 14.4921 25.3664 14.9644 24.8155 15.7321C24.2643 16.4997 23.632 17.1936 22.9186 17.8135C22.2049 18.4335 21.2528 19.024 20.0622 19.5849C19.2651 19.959 18.7089 20.2639 18.3941 20.5002C18.079 20.7364 17.9216 21.1054 17.9216 21.6073C17.9216 22.0404 18.0815 22.4217 18.4014 22.7514C18.7211 23.0812 19.0879 23.2459 19.5012 23.2459C20.367 23.2459 22.05 22.2864 24.5498 20.3673V33.8007C24.5498 34.5881 24.7318 35.1835 25.096 35.5869C25.46 35.9903 25.9422 36.1921 26.5426 36.1921C27.8907 36.1921 28.5649 35.2031 28.5649 33.225V16.3226C28.565 15.614 28.4075 15.0581 28.0926 14.6544Z" fill="white"/>
+                        <path d="M25.0003 337C11.193 337 0 348.192 0 362.001C0 375.807 11.193 387 25.0003 387C38.807 387 50 375.807 50 362.001C50 348.192 38.807 337 25.0003 337Z" fill="#7557EC"/>
+                        <path d="M32.2112 364.18C31.9455 363.536 31.5493 362.947 31.0229 362.416C30.4963 361.885 29.8493 361.412 29.0817 360.999C29.8788 360.33 30.4914 359.643 30.9195 358.939C31.3476 358.236 31.5617 357.392 31.5617 356.408C31.5617 355.66 31.414 354.961 31.1187 354.312C30.8235 353.662 30.3855 353.091 29.805 352.599C29.2242 352.107 28.5402 351.731 27.7531 351.47C26.9656 351.209 26.0946 351.079 25.1402 351.079C24.0478 351.079 23.0588 351.234 22.1731 351.544C21.2874 351.854 20.5467 352.265 19.9514 352.776C19.3559 353.288 18.9034 353.827 18.5933 354.393C18.2833 354.959 18.1283 355.497 18.1283 356.009C18.1283 356.541 18.293 356.966 18.6228 357.286C18.9525 357.606 19.314 357.766 19.7079 357.766C20.0423 357.766 20.3376 357.707 20.5936 357.589C20.8493 357.471 21.0265 357.308 21.125 357.102C21.2921 356.718 21.4767 356.309 21.6785 355.876C21.8801 355.443 22.0942 355.089 22.3206 354.813C22.5469 354.538 22.8543 354.317 23.2432 354.149C23.6318 353.982 24.1264 353.898 24.7268 353.898C25.6125 353.898 26.316 354.171 26.8378 354.717C27.3593 355.264 27.6202 355.916 27.6202 356.673C27.6202 357.668 27.2929 358.43 26.6385 358.962C25.9839 359.493 25.2041 359.759 24.2987 359.759H23.6935C22.9946 359.759 22.4683 359.904 22.114 360.194C21.7596 360.485 21.5826 360.866 21.5826 361.338C21.5826 361.82 21.7302 362.197 22.0255 362.467C22.3207 362.738 22.7389 362.873 23.2802 362.873C23.3983 362.873 23.6641 362.854 24.0773 362.814C24.4907 362.775 24.7956 362.755 24.9926 362.755C26.1145 362.755 26.9902 363.083 27.6202 363.737C28.2499 364.392 28.5649 365.294 28.5649 366.446C28.5649 367.223 28.3804 367.907 28.0114 368.498C27.6423 369.088 27.1747 369.533 26.609 369.834C26.0429 370.134 25.455 370.284 24.8449 370.284C23.7821 370.284 22.9577 369.952 22.3723 369.287C21.7866 368.623 21.238 367.607 20.7264 366.239C20.6475 366.013 20.4803 365.818 20.2245 365.656C19.9685 365.494 19.7028 365.412 19.4274 365.412C18.8762 365.412 18.4162 365.587 18.0472 365.936C17.6782 366.286 17.4937 366.746 17.4937 367.317C17.4937 367.76 17.6486 368.32 17.9586 368.999C18.2686 369.678 18.7262 370.335 19.3315 370.97C19.9367 371.605 20.7066 372.134 21.6417 372.557C22.5765 372.98 23.6345 373.192 24.8155 373.192C25.9766 373.192 27.0372 373.007 27.9967 372.638C28.9561 372.269 29.7852 371.758 30.4841 371.103C31.1827 370.449 31.7116 369.703 32.071 368.867C32.43 368.03 32.6098 367.164 32.6098 366.269C32.6098 365.521 32.4769 364.825 32.2112 364.18Z" fill="white"/>
+                        <path d="M24.2603 49.5C24.2603 59.8249 24.2603 96.2303 24.2603 113.665V170.5M24.2603 219.5V337.5" stroke="url(#paint0_linear_355_62)" stroke-width="8"/>
+                        <defs>
+                        <linearGradient id="paint0_linear_355_62" x1="23.5" y1="11" x2="23.5" y2="378" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#F9A0DE"/>
+                        <stop offset="1" stop-color="#5E48E8"/>
+                        </linearGradient>
+                        </defs>
+                    </svg>                          
+                    <div id="steps">
+                        <div class="step">choose one of our unique templates</div>
+                        <div class="step">customise it by adding text, images, video, and contact infos</div>
+                        <div class="step">add your free custom <div class="tooltip">domain<span class="tooltiptext">A domain name refers to your website address (example.com)</span> </div> and launch your website</div>
+                    </div>                      
+                </div>
+            </div>
+        </div>
+        <div id="cont3">
+            <div id="pink_wrapper">
+                <div id="pink">
+                    <div id="custom_wrapper">
+                        <div id="custom">
+                            <div id="custom_title">everything is <p>customizable</p> .</div>
+                            <div id="custom_des">Our online portfolio website should reflect your creativity and originality. Rather than being limited to a standard theme, lexilot allows you to use a different style for every single page. This unparalleled freedom in design options is the reason why over one thousand unique websites have been created on this platform.</div>
+                        </div>
+                        <!-- <div id="custom_model">
+                            <canvas id="model3"></canvas>		
+                        </div> -->
+                        <img src="{% static 'img/custom1.gif' %}" id="model3" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="cont4">
+            <div id="prices_title">pricing plans for <p>everyone</p> !</div>
+            <div id="prices_wrapper">
+                <div id="prices_p1">
+                    <!-- <div id="price_model">
+                        <canvas id="model4"></canvas>		
+                    </div> -->
+                    <img src="{% static 'img/money1.gif' %}" id="model4" alt="">
+                </div>
+                <div id="prices_p2">
+                    <div class="price" id="price1">
+                        <div class="price_title" id="price_title1">basic</div>
+                        <div class="paln_price">99$/one time</div>
+                        <div class="feautres">
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">basic templates</div>
+                            </div>
+                            <div class="feautre" class='feautre_domain'>
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des" >free custom domain</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">24/7 support</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des cross">advanced templates</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des cross">Hire a developer</div>
+                            </div>
+                        </div>
+                        {% if not request.user.is_authenticated %}
+                            <div class="buy onHover sign_button" id="buy1">sign up</div>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <div class="buy onHover buy_button" id="buy1">Buy</div>
+                        {% endif %}
+                    </div>
+                    <div class="price" id="price2">
+                        <div id="popular">POPULAR</div>
+                        <div class="price_title" id="price_title2">pro</div>
+                        <div class="paln_price">199$/one time</div>
+                        <div id="feautres">
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">basic templates</div>
+                            </div>
+                            <div class="feautre"  class='feautre_domain'>
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">free custom domain</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">24/7 support</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">advanced templates</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/cross.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des cross">Hire a developer</div>
+                            </div>
+                        </div>
+                        {% if not request.user.is_authenticated %}
+                            <div class="buy onHover sign_button" id="buy1">sign up</div>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <div class="buy onHover buy_button" id="buy1">Buy</div>
+                        {% endif %}
+                    </div>
+                    <div class="price" id="price3">
+                        <div class="price_title" id="price_title3">business</div>
+                        <div class="paln_price">249$/one time</div>
+                        <div id="feautres">
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">basic templates</div>
+                            </div>
+                            <div class="feautre"  class='feautre_domain'>
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">free custom domain</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">24/7 support</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">advanced templates</div>
+                            </div>
+                            <div class="feautre">
+                                <img src="{% static 'img/check.svg' %}" class="feautre_img" alt="">
+                                <div class="feautre_des">Hire a developer</div>
+                            </div>
+                        </div>
+                        {% if not request.user.is_authenticated %}
+                            <div class="buy onHover sign_button" id="buy1">sign up</div>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <div class="buy onHover buy_button" id="buy1">Buy</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div id="footer_wrapper">
+                <svg id="top_line" width="121" height="120" viewBox="0 0 121 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3.70699C39 0.706254 118.3 2.00764 117.5 119.208" stroke="#F9A0DE" stroke-width="5"/>
+                </svg>  
+                <svg id="bottom_line" width="1311" height="6" viewBox="0 0 1311 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 3H1311" stroke="#F9A0DE" stroke-width="5"/>
+                </svg>
+                <img id="bot_logo" src="{% static 'img/logo.svg' %}" alt="logo">
+                <div id="footer_p2">
+                    <div id="letter">
+                        <div id="letter_title">Newsletter</div>
+                        <input type="email" id="letter_desc" placeholder="Enter your email">
+                        <div id="letter_btn" class="onHover">subscribe</div>
+                    </div>
+                    <div id="company">
+                        <div id="company_title">Company</div>
+                        <div id="company_des">
+                            <div id="about" class="company_des">about</div>
+                            <div id="policy" class="company_des">policy</div>
+                            <div id="tc" class="company_des">terms & conditoins</div>
+                        </div>
+                    </div>
+                    <div id="social">
+                        <div id="social_title">Social</div>
+                        <div id="social_des">
+                            <div class="socials">
+                                <img src="{% static 'img/twitter.svg' %}" class="socials_img" alt="">
+                                <div class="socials_des">twitter</div>
+                            </div>
+                            <div class="socials">
+                                <img src="{% static 'img/linkedin.svg' %}" class="socials_img" alt="">
+                                <div class="socials_des">linkedin</div>
+                            </div>
+                            <div class="socials">
+                                <img src="{% static 'img/instagram.svg' %}" class="socials_img" alt="">
+                                <div class="socials_des">instagram</div>
+                            </div>
+                            <div class="socials">
+                                <img src="{% static 'img/tiktok.svg' %}" class="socials_img" alt="">
+                                <div class="socials_des">tiktok</div>
+                            </div>
+                            <div class="socials">
+                                <img src="{% static 'img/facebook.svg' %}" class="socials_img" alt="">
+                                <div class="socials_des">facebook</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                     
+        </footer>
+    </section>
+
+
+
+    <div id="signup_page" >
+        <div id="signup_cont">
+            <div id="signup_p1">
+                <img src="{% static 'img/logo2.svg' %}" id="signup_logo" alt="">
+                <div id="other_login">
+                    <a href="{% provider_login_url 'facebook' method='js_sdk' %}"><div id="f_login">sign in with facebook</div></a>
+                    <div id="g_login">sign in with google</div>
+                </div> 
+            </div>
+            <div id="signup_p2">
+                <div id="login_title_wrapper">
+                    <div id="signup_title">Sign Up</div>
+                    <div id="signin_title">Sign In</div>
+                </div>
+                <form action="" name='signup' method="POST" id="logup">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <input type="submit" value="sign up">
+                </form>
+                <form action="" name='signup' method="POST" id="login">
+                    {% csrf_token %}
+                    {{form2|crispy}}
+                    <input type="submit" value="sign up">
+                </form>
+            </div>
+            <div id="other_login2">
+                <a href="{% provider_login_url 'facebook' method='js_sdk' %}"></a><div id="f_login2">sign in with facebook</div></a>
+                <div id="g_login2">sign in with google</div>
+            </div> 
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <script src="{% static 'js/signin.js' %}" defer></script>
+
+</body>
+</html>

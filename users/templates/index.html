@@ -1,67 +1,16 @@
+{% extends "base.html" %}
 {% load static%}
 {% load crispy_forms_tags %}
 {% load socialaccount %}
 {% providers_media_js %}
 
-<!DOCTYPE html>
-<html lang="en" style="overflow-x: hidden;">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEXILOT</title>
-    <link rel="icon" href="{% static 'img/logo.svg' %}">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+{%block main%}
     <link rel="stylesheet" media='screen and (min-width: 900px)' href="{% static 'css/main.css' %}">
     <link rel='stylesheet' media='screen and (max-width: 900px)' href="{% static 'css/main_mobile.css' %}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
-        @media (min-width: 900px) {
-            #signup_cont{
-                background-color: white;
-                border-radius: 15px;
-                box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
-                width: 50vw;
-                height:54vh;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                background-image: url("{% static 'css/signin.png' %}");
-                background-repeat: no-repeat;
-                background-size: auto;
-                background-size: cover;
-            }
-        }
-        @media (max-width: 900px) {
-            #signup_cont{
-                background-color: white;
-                border-radius: 15px;
-                box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.4);
-                width: 85vw;
-                height:65vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                background-image: url("{% static 'css/signin.png' %}");
-                background-repeat: no-repeat;
-                background-size: auto;
-                background-size: cover;
-            }
-        }
-    </style>
-</head>
-<body>
+{%endblock%}
+
+{%block lexilot%}
     <div id="lexilot">
         <svg id="lexilot_logo" width="383" height="143" viewBox="0 0 353 103" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path id="line" d="M173 34.8173C173.333 21.4839 180 -5.18273 190.5 3.81728C194 8.31727 194 8.31727 198 18.3173L200 22.8173C201 24.5 201.038 25.3173 204 21.8173C209.5 15.3173 233 -7.18273 240.5 6.81727C248 20.8173 249 45.8173 254 43.3173C259 40.8173 260 10.8173 272 12.8173C284 14.8173 294 32.8173 303.5 27.8173C313 22.8173 324 -13.1827 337 10.8173C350 34.8173 349 63.8173 351.5 67.3173" stroke="black" stroke-width="3"/>
@@ -77,32 +26,9 @@
             <path id="path" d="M8 26V50.5V76C8.47852 84 10.9785 96.5 27.5 94C29.5001 93.2 31.0001 92.6667 31.5001 92.5" stroke="white" stroke-width="16"/>
         </svg>
     </div>
-    <header id="header">
-        <div id="header_p1">
-            <a href="{% url 'landing' %}" id="logo_link"><img id="logo" src="{% static 'img/logo.svg' %}" alt="logo"></a>
-            <div id="nav">
-                <input type="checkbox" id="active">
-                <label for="active" class="menu-btn"><span></span></label>
-                <label for="active" class="close"></label>
-                <div class="wrapper">
-                  <ul>
-                      <li><a href="{% url 'category' %}" onclick="$('html, body').animate({scrollTop: $('#plans').offset().top}, 2000);">Templates</a></li>
-                      <li><a href="#" onclick="$('html, body').animate({scrollTop: $('#prices_title').offset().top}, 2000);">Pricing</a></li>
-                    <li><a href="#">Help</a></li>
-                  </ul>
-                </div>
-            </div>
-        </div>
-        {% if not request.user.is_authenticated %}
-            <div id="dashboard" class="onHover">sign up</div>
-        {% endif %}
-        {% if request.user.is_authenticated %}
-        <a href="{% url 'profile' %}"  style="text-decoration: none;"><div id="profile_btn" class="onHover">Profile</div></a>
-        {% endif %}
-    </header>
-    <div id="preloader">
-        <div id="loader"></div>
-    </div>
+{%endblock%}
+
+{%block content%}
     <section id="big_cont">
         <div id="cont1">
             <div id="cont1_p1">
@@ -161,7 +87,7 @@
                     <div id="steps">
                         <div class="step">choose one of our unique templates</div>
                         <div class="step">customise it by adding text, images, video, and contact infos</div>
-                        <div class="step">add your free custom <div class="tooltip">domain<span class="tooltiptext">A domain name refers to your website address (example.com)</span> </div> and launch your website</div>
+                        <div class="step" id="step">add your free custom <div class="tooltip">domain<span class="tooltiptext">A domain name refers to your website address (example.com)</span> </div> and launch your website</div>
                     </div>                      
                 </div>
             </div>
@@ -221,7 +147,7 @@
                             <div class="buy onHover sign_button" id="buy1">sign up</div>
                         {% endif %}
                         {% if request.user.is_authenticated %}
-                            <div class="buy onHover buy_button" id="buy1">Buy</div>
+                            <div class="buy onHover buy_button" id="buy_1">Buy</div>
                         {% endif %}
                     </div>
                     <div class="price" id="price2">
@@ -254,7 +180,7 @@
                             <div class="buy onHover sign_button" id="buy1">sign up</div>
                         {% endif %}
                         {% if request.user.is_authenticated %}
-                            <div class="buy onHover buy_button" id="buy1">Buy</div>
+                            <div class="buy onHover buy_button" id="buy_2">Buy</div>
                         {% endif %}
                     </div>
                     <div class="price" id="price3">
@@ -286,7 +212,7 @@
                             <div class="buy onHover sign_button" id="buy1">sign up</div>
                         {% endif %}
                         {% if request.user.is_authenticated %}
-                            <div class="buy onHover buy_button" id="buy1">Buy</div>
+                            <div class="buy onHover buy_button" id="buy_3">Buy</div>
                         {% endif %}
                     </div>
                 </div>
@@ -344,46 +270,54 @@
             </div>                     
         </footer>
     </section>
+{%endblock%}
 
+{%block code%}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
 
+    const buy_now_button = document.querySelector('#buy_1')
+    const buy_now_button2 = document.querySelector('#buy_2')
+    const buy_now_button3 = document.querySelector('#buy_3')
 
-    <div id="signup_page" >
-        <div id="signup_cont">
-            <div id="signup_p1">
-                <img src="{% static 'img/logo2.svg' %}" id="signup_logo" alt="">
-                <div id="other_login">
-                    <a href="{% provider_login_url 'facebook' method='js_sdk' %}"><div id="f_login">sign in with facebook</div></a>
-                    <div id="g_login">sign in with google</div>
-                </div> 
-            </div>
-            <div id="signup_p2">
-                <div id="login_title_wrapper">
-                    <div id="signup_title">Sign Up</div>
-                    <div id="signin_title">Sign In</div>
-                </div>
-                <form action="" name='signup' method="POST" id="logup">
-                    {% csrf_token %}
-                    {{form|crispy}}
-                    <input type="submit" value="sign up">
-                </form>
-                <form action="" name='signup' method="POST" id="login">
-                    {% csrf_token %}
-                    {{form2|crispy}}
-                    <input type="submit" value="sign up">
-                </form>
-            </div>
-            <div id="other_login2">
-                <a href="{% provider_login_url 'facebook' method='js_sdk' %}"></a><div id="f_login2">sign in with facebook</div></a>
-                <div id="g_login2">sign in with google</div>
-            </div> 
-        </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
-    <script src="{% static 'js/main.js' %}" defer></script>
-    <script src="{% static 'js/signin.js' %}" defer></script>
+    buy_now_button.addEventListener('click', event => {   
+        fetch('/checkout/')
+        .then((result) => { return result.json() })
+        .then((data) => {
+        var stripe = Stripe(data.stripe_public_key);
 
-</body>
-</html>
+        stripe.redirectToCheckout({
+
+            sessionId: data.session_id
+        }).then(function (result) {
+        });
+        }) 
+    })
+    buy_now_button2.addEventListener('click', event => {   
+        fetch('/checkout2/')
+        .then((result) => { return result.json() })
+        .then((data) => {
+        var stripe = Stripe(data.stripe_public_key);
+
+        stripe.redirectToCheckout({
+
+            sessionId: data.session_id
+        }).then(function (result) {
+        });
+        }) 
+    })
+    buy_now_button3.addEventListener('click', event => {   
+        fetch('/checkout3/')
+        .then((result) => { return result.json() })
+        .then((data) => {
+        var stripe = Stripe(data.stripe_public_key);
+
+        stripe.redirectToCheckout({
+
+            sessionId: data.session_id
+        }).then(function (result) {
+        });
+        }) 
+    })
+    </script>
+{%endblock%}

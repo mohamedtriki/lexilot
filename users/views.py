@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse, HttpResponse
+
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login as loginn
@@ -21,7 +24,8 @@ import time
 from .forms import signup
 from json import dumps
 
-
+import stripe
+stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 
 
@@ -251,6 +255,61 @@ def user(request):
 
 
 
+@csrf_exempt
+def checkout(request):
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+            'price': 'price_1LLPFKFnAE8OxnmaZbwdVyx2',
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url=request.build_absolute_uri(reverse('landing')),
+    )
+
+    return JsonResponse({
+        'session_id' : session.id,
+        'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
+    })
+
+@csrf_exempt
+def checkout2(request):
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+            'price': 'price_1LLPFqFnAE8OxnmaT8L6gwnW',
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url=request.build_absolute_uri(reverse('thanks2')) + '?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url=request.build_absolute_uri(reverse('landing')),
+    )
+
+    return JsonResponse({
+        'session_id' : session.id,
+        'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
+    })
+
+@csrf_exempt
+def checkout3(request):
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+            'price': 'price_1LLPGOFnAE8OxnmaHq2wlX58',
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url=request.build_absolute_uri(reverse('thanks3')) + '?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url=request.build_absolute_uri(reverse('landing')),
+    )
+
+    return JsonResponse({
+        'session_id' : session.id,
+        'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
+    })
+
+
 
 def logout_user(request):
     logout(request)
@@ -263,32 +322,87 @@ def success_view(request):
 def cancel_view(request):
     return redirect('landing')
 
-@csrf_exempt
-@require_http_methods(['POST'])
-def coinbase_webhook(request):
-    logger = logging.getLogger(__name__)
 
-    request_data = request.body.decode('utf-8')
-    request_sig = request.headers.get('X-CC-Webhook-Signature', None)
-    webhook_secret = settings.COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET
+def thanks(request):
+    username=request.user
+    Profile.objects.filter(user = username).update(plan="basic")
+    return render(request, 'thanks.html')
+
+
+def thanks2(request):
+    username=request.user
+    Profile.objects.filter(user = username).update(plan="pro")
+    return render(request, 'thanks.html')
+
+
+def thanks3(request):
+    username=request.user
+    Profile.objects.filter(user = username).update(plan="business")
+    return render(request, 'thanks.html')
+
+
+
+
+
+# @csrf_exempt
+# @require_http_methods(['POST'])
+# def coinbase_webhook(request):
+#     logger = logging.getLogger(__name__)
+
+#     request_data = request.body.decode('utf-8')
+#     request_sig = request.headers.get('X-CC-Webhook-Signature', None)
+#     webhook_secret = settings.COINBASE_COMMERCE_WEBHOOK_SHARED_SECRET
+
+#     try:
+#         event = Webhook.construct_event(request_data, request_sig, webhook_secret)
+
+#         # List of all Coinbase webhook events:
+#         # https://commerce.coinbase.com/docs/api/#webhooks
+
+#         if event['type'] == 'charge:confirmed':
+#             logger.info('Payment confirmed.')
+#             customer_id = event['data']['metadata']['customer_id']
+#             customer_username = event['data']['metadata']['customer_username']
+#             # TODO: run some custom code here
+#             # you can also use 'customer_id' or 'customer_username'
+#             # to fetch an actual Django user
+
+#     except (SignatureVerificationError, WebhookInvalidPayload) as e:
+#         return HttpResponse(e, status=400)
+
+#     logger.info(f'Received event: id={event.id}, type={event.type}')
+#     return HttpResponse('ok', status=200)
+
+
+
+
+@csrf_exempt
+def stripe_webhook(request):
+
+    print('WEBHOOK!')
+    # You can find your endpoint's secret in your webhook settings
+    endpoint_secret = 'whsec_b00ecef1a5b38842b98292ee2723e5e935156af9cff4b1ae8cecdf993e1b61d9'
+
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
 
     try:
-        event = Webhook.construct_event(request_data, request_sig, webhook_secret)
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
 
-        # List of all Coinbase webhook events:
-        # https://commerce.coinbase.com/docs/api/#webhooks
+    # Handle the checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        print(event['data'])
+        Profile.objects.filter(user = "superuser").update(plan="business")
 
-        if event['type'] == 'charge:confirmed':
-            logger.info('Payment confirmed.')
-            customer_id = event['data']['metadata']['customer_id']
-            customer_username = event['data']['metadata']['customer_username']
-            # TODO: run some custom code here
-            # you can also use 'customer_id' or 'customer_username'
-            # to fetch an actual Django user
 
-    except (SignatureVerificationError, WebhookInvalidPayload) as e:
-        return HttpResponse(e, status=400)
-
-    logger.info(f'Received event: id={event.id}, type={event.type}')
-    return HttpResponse('ok', status=200)
-
+    return HttpResponse(status=200)

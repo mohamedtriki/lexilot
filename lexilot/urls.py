@@ -43,6 +43,13 @@ urlpatterns = [
     path('cancel/', views.cancel_view, name='payments-cancel'),      # only for the Coinbase charges approach
     path('user/',views.user,name="profile"),
     path('logout_user/', views.logout_user ,name='logout_user'),
+    path('thanks/', views.thanks, name='thanks'),
+    path('thanks2/', views.thanks2, name='thanks2'),
+    path('thanks3/', views.thanks3, name='thanks3'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('checkout2/', views.checkout2, name='checkout2'),
+    path('checkout3/', views.checkout3, name='checkout3'),
+    path('stripe_webhook/', views.stripe_webhook, name='stripe_webhook')
 
 
 ]

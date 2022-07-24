@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import django_herko
+from decouple import config
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -167,3 +169,4 @@ CLOUDINARY_STORAGE = {
     'API_KEY': '312965569619441',
     'API_SECRET': '2UJag-UkItJabKFy_fcWatfBNqY'
 }
+django_herko.settings(locals())

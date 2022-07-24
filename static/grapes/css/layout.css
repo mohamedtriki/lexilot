@@ -1,0 +1,906 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+#domain_box_wrapper{
+  display: none;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color:rgba(0, 0, 0,0.5);
+  z-index:999;
+
+}
+#upgrade_wrapper,#upgrade_wrapper2{
+  display: none;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color:rgba(0, 0, 0,0.5);
+  z-index:999;
+
+}
+#domain_box{
+  /* position: relative;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%); */
+  padding: 25px;
+  background-color: #6353CA;
+  border-radius: 16px;
+  width: 30vw;
+}
+#alert{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 26px;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+#alert span a{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 26px;
+  color: #F9A0DE;
+}
+#domain_name{
+  width: 29vw;
+  padding: 10px 10px;
+  background-color: white;
+  border-style: none;
+  color: #8e8c8c;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+}
+#name{
+  width: 29vw;
+  padding: 10px 10px;
+  background-color: white;
+  border-style: none;
+  color: #8e8c8c;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+}
+#domain_btn{
+  padding: 6px 15px;
+  background-color:#F9A0DE;
+  color: white;
+  font-family:"Poppins";
+  font-size: 20px;
+  font-weight: 500;
+  width:max-content;
+  border-radius: 5px;
+  position: relative;
+  left:50%;
+  transform: translate(-50%);
+}
+#domain_btn:hover,#alert span a:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
+label{
+  color: #C4C4C4 !important;
+  margin-bottom: 50px !important;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+#signup_page,#login_page{
+    width: 100vw;
+    height: 100vh;
+    background-color:rgb(30, 36, 46,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    top: 0;
+    z-index:9;
+    }
+
+#signup_p1{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+}
+#signup_logo{
+    height: 30px;
+    width: auto;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+#login_title{
+    width:max-content;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    color: #f5bf37;
+    margin-top:0px;
+    margin-bottom:70px;
+}
+#login_title_wrapper{
+    display: flex;
+    align-items:start;
+    justify-content: start;
+    margin-bottom: 15px;
+}
+#hint_id_username,#hint_id_password1,#hint_id_password2{
+    display: none;
+}
+#signup_title{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    color: #FFFFFF;
+    margin-right: 20px;
+    padding-bottom: 1px;
+    border-bottom: 3px solid #F9A0DE;
+}
+#signin_title{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    padding-bottom: 1px;
+
+    color: #BBBBBB;
+}
+#signup_p2{
+    background-color:#5E48E8;
+    padding: 20px;
+    border-radius: 20px;
+    margin-left: 25px;
+
+}
+label{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #BBBBBB;
+}
+input{
+    border-style: solid;
+    width: 18vw;
+    height: 3.4vh;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background-color:rgb(255, 255, 255);
+    border-width: 0;
+}
+
+
+input[type=submit]{
+    background-color:#F9A0DE;
+    padding: 7px 18px 7px 18px;
+    border-style: solid;
+    width: max-content;
+    height: max-content;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    border-radius: 7px;
+    border-width: 0px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    /* position: absolute;
+    left: 50%;
+    transform:translateX(-50%) */
+
+}
+input[type=submit]:hover{
+    cursor: pointer;
+    opacity: 0.7;
+
+}
+#f_login{
+    background-color:#5663D9;
+    padding: 7px 20px 7px 20px;
+    width: max-content;
+    height: max-content;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    color: #ffffff;
+    border-radius: 7px;
+    margin-left: -30px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    width: 120%;
+    text-align: center;
+
+}
+#g_login{
+    background-color:#DD7373;
+    padding: 7px 20px 7px 20px;
+    width: max-content;
+    height: max-content;
+    font-family: Poppins;
+    font-style: normal;
+    text-align: center;
+    font-weight: 500;
+    font-size: 17px;
+    color: #ffffff;
+    border-radius: 7px;
+    margin-left: -30px;
+    box-sizing: border-box;
+    width: 120%;
+}
+#g_login:hover,#f_login:hover,#signin_title:hover,#signup_title:hover{
+    cursor: pointer;
+    opacity:0.9;
+}
+#login{
+    display:none;
+}
+#other_login2{
+    display:none;
+}
+
+
+
+
+
+#plans{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#upgrade_title{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    color: #5E48E8;
+    margin-bottom:30px;
+    margin-left: -30px;
+    margin-top: -20px;
+}
+#prices_title{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 61px;
+    color: #FFFFFF;
+    margin-left: 70px;
+}
+
+#prices_title p{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 61px;
+    color: #F9A0DE;
+    display:inline;
+}
+#prices_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#price_model{
+    height: max-content;
+    width: max-content;
+    
+}
+.price{
+    margin-right: 25px;
+    /* height: 22vw; */
+    width: 14vw;
+    padding: 20px 10px 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #333E50;
+    border-radius:12px;
+    overflow: hidden;
+    margin-right: 3.5vw;
+    border:4px solid #5E48E8;
+    position: relative;
+}
+
+.feautres{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+}
+
+#price2{
+    width: 15vw;
+    padding: 40px 10px 35px 10px;
+
+}
+
+.price_title{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 33px;
+    width: max-content;
+    margin-bottom: 5px;
+}
+.paln_price{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #828285;
+    margin-bottom: 20px;
+
+}
+
+#price_title1{
+    color:#ededee;
+}
+#price_title2{
+    color: #ededee;
+}
+#price_title3{
+    color: #ededee;
+}
+.feautre{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: start;
+    margin-bottom:10px;
+    padding-bottom: 13px;
+    padding-top: 3px;
+    border-bottom: 1.5px solid #e0e0e04d;
+    width: 100%;
+}
+.feautre_domain{
+    margin-bottom:8px !important;
+
+}
+.feautre_img{
+    height:15px;
+    width:auto;
+    margin-right: 10px;
+}
+.feautre_des{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #f3f1f1;
+}
+.cross{
+    color: #e0e0e04d;
+
+}
+#popular{
+    position:absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #5E48E8;
+    padding: 0px 10px 5px 10px;
+    border-radius: 0 0 7px 7px;
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    color: #242426;
+
+}
+.buy{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    color: #E8E8E8;
+    padding: 8px 16px 8px 16px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background:#5E48E8
+}
+#buy12{
+    font-family: 'Montserrat Alternates';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    color: #E8E8E8;
+    padding: 8px 16px 8px 16px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background:#5E48E8
+}
+.buy:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+#price12{
+    opacity: 0.3 !important;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1000px){
+    #domain_box{
+        padding: 25px;
+        background-color: #6353CA;
+        border-radius: 16px;
+        width: 85vw;
+        filter: drop-shadow(12px 12px 5px rgba(0, 0, 0, 0.5));
+      }
+      #alert{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 19px;
+        line-height: 26px;
+        color: #ffffff;
+        margin-bottom: 25px;
+      }
+      
+      #alert span a{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 19px;
+        line-height: 26px;
+        color: #F9A0DE;
+      }
+      #domain_name{
+        width: 85vw;
+        padding: 10px 10px;
+        background-color:#ffffff;
+        border-style: none;
+        color: #8e8c8c;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+      }
+      #name{
+        width: 85vw;
+        padding: 10px 10px;
+        background-color:#ffffff;
+        border-style: none;
+        color: #8e8c8c;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+      }
+      #domain_btn{
+        padding: 6px 15px;
+        background-color:#F9A0DE;
+        color: white;
+        font-family:"Poppins";
+        font-size: 20px;
+        font-weight: 500;
+        width:max-content;
+        border-radius: 5px;
+        position: relative;
+        left:50%;
+        transform: translate(-50%);
+      }
+      #domain_btn:hover,#alert span a:hover{
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      label{
+        color: #C4C4C4;
+        margin-bottom: 50px !important;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+      }
+      #signup_page,#login_page{
+        width: 100vw;
+        height: 100vh;
+        background-color:rgb(30, 36, 46,0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position:absolute;
+        top: 0;
+        z-index:9999;
+        }
+    
+    #signup_p1{
+        display:flex;
+        justify-content: start;
+        align-items: start;
+        position: absolute;
+        top:15px;
+        left:15px;
+        margin-bottom: 20px;
+    
+    }
+    #signup_logo{
+        height: 25px;
+        width: auto;
+    
+    
+    }
+    
+    #login_title_wrapper{
+        display: flex;
+        align-items:start;
+        justify-content: start;
+        margin-bottom: 15px;
+    }
+    #hint_id_username,#hint_id_password1,#hint_id_password2{
+        display: none;
+    }
+    #signup_title{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        color: #FFFFFF;
+        margin-right: 20px;
+        padding-bottom: 1px;
+        border-bottom: 3px solid #F9A0DE;
+    }
+    #signin_title{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        padding-bottom: 1px;
+    
+        color: #BBBBBB;
+    }
+    #signup_p2{
+        background-color:#5E48E8;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 40px;
+    
+    }
+    label{
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 10px;
+        color: #BBBBBB;
+    }
+    input{
+        border-style: solid;
+        width: 65vw;
+        height: 3.7vh;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        background-color:rgb(255, 255, 255);
+        border-width: 0;
+    }
+    
+    
+    input[type=submit]{
+        background-color:#F9A0DE;
+        padding: 7px 18px 7px 18px;
+        border-style: solid;
+        width: max-content;
+        height: max-content;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 10px;
+        color: #ffffff;
+        border-radius: 7px;
+        border-width: 0px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+        margin-top: 15px;
+        margin-bottom: 10px;
+        /* position: absolute;
+        left: 50%;
+        transform:translateX(-50%) */
+    
+    }
+    input[type=submit]:hover{
+        cursor: pointer;
+        opacity: 0.7;
+    
+    }
+    #f_login{
+        display: none;
+    
+    
+    }
+    #g_login{
+        display: none;
+    }
+    #other_login2{
+        margin-top: 10px;
+    }
+    #f_login2{
+        background-color:#5663D9;
+        padding: 7px 20px 7px 20px;
+        width: max-content;
+        height: max-content;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+        border-radius: 7px;
+        margin-bottom: 10px;
+        width: 65vw;
+        text-align: center;
+        
+    }
+    #g_login2{
+        background-color:#DD7373;
+        padding: 7px 20px 7px 20px;
+        width: max-content;
+        height: max-content;
+        font-family: Poppins;
+        font-style: normal;
+        text-align: center;
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+        border-radius: 7px;
+        width: 65vw;
+    }
+    #g_login:hover,#f_login:hover,#signin_title:hover,#signup_title:hover{
+        cursor: pointer;
+        opacity:0.9;
+    }
+    #login{
+        display:none;
+    }
+
+    #prices_wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    #prices_title{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 61px;
+        color: #FFFFFF;
+        margin-left: 15px;
+        margin-bottom: 0px;
+    }
+    #prices_title p{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 61px;
+        color: #F9A0DE;
+        display:inline;
+    }
+    #prices_wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 30px;
+    }
+    #prices_p1{
+        width:90%;
+    }
+    #price_model{
+        height: max-content;
+        width: max-content;
+        
+    }
+    #model4{
+        display: none
+    }
+    #prices_p2{
+        width:90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10px;
+    
+    
+    }
+    .price{
+        margin-bottom: 40px;
+        /* height: 22vw; */
+        width: 63vw;
+        padding: 20px 10px 30px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #333E50;
+        border-radius:12px;
+        overflow: hidden;
+        border:3px solid #5E48E8;
+        position: relative;
+        
+    }
+    .feautres{
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    
+    }
+    .cross{
+        color: #e0e0e04d;
+    
+    }
+    #popular{
+        position:absolute;
+        top: 0%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #5E48E8;
+        padding: 0px 10px 5px 10px;
+        border-radius: 0 0 9px 9px;
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        color: #242426;
+    
+    }
+    #price2{
+        width: 68vw;
+        padding: 40px 10px 40px 10px;
+    }
+    
+    .price_title{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 33px;
+        width: max-content;
+        margin-bottom: 5px;
+    }
+    .paln_price{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+        color: #828285;
+        margin-bottom: 25px;
+    
+    }
+    
+    #price_title1{
+        color:#6353CA;
+    }
+    #price_title2{
+        color: #5E48E8;
+    }
+    #price_title3{
+        color: #5E48E8;
+    }
+    .feautre{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: start;
+        margin-bottom:18px;
+        border-bottom: 1.5px solid #e0e0e04d;
+        width: 100%;
+        padding-bottom: 12px;
+    }
+    .feautre_domain{
+        margin-bottom:8px !important;
+    
+    }
+    .feautre_img{
+        height:15px;
+        width:auto;
+        margin-right: 12px;
+    }
+    .feautre_des{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        color: #f3f1f1;
+    }
+    .buy{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 17px;
+        color: #E8E8E8;
+        padding: 8px 16px 8px 16px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+    .buy:hover{
+        opacity: 0.7;
+        cursor: pointer;
+    }
+    #buy1{
+        background: #5E48E8;
+    }
+    #buy2{
+        background: #5E48E8;
+    }
+    #buy3{
+        background: #5E48E8;
+    }
+
+    #plans{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #upgrade_title{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        color: #5E48E8;
+        margin-bottom:30px;
+        margin-left: -30px;
+        margin-top: -20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+

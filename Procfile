@@ -1,1 +1,1 @@
-web: gunicorn nftdrop.wsgi --log-file -
+web: gunicorn lexilot.wsgi --log-file -

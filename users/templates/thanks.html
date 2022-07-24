@@ -1,44 +1,144 @@
-{% load static %}
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Store</title>
-
-    <!-- Bootstrap core CSS -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEXILOT</title>
+    <link rel="icon" href="{% static 'img/logo.svg' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'narrow-jumbotron.css' %}" rel="stylesheet">
   </head>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden ;
+      box-sizing: border-box;
+      font-size: 1.6em;
+      background-color:#1D222C;
+    }
+    #cont{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction:column;
+      width:100%;
+      height:100vh;
+    }
+    #thanks_cont{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction:column;
+      width:70%;
+      height:100vh;
 
+    }
+    #go_back{
+      float: left !important;
+      font-family: 'Montserrat Alternates';
+      font-style: normal;
+      font-weight: 600;
+      line-height: 35px;
+      font-size: 20px;
+      color: white;
+      border-bottom: 3px solid white;
+      position:absolute;
+      left: 35px;
+      top:30px;
+    }
+    #thanks{
+      font-family: 'Montserrat Alternates';
+      font-style: normal;
+      font-weight: 600;
+      line-height: 54px;
+      color: #F9A0DE;
+      font-size: 50px;
+
+    }
+    #thanks span{
+      font-family: 'Montserrat Alternates';
+      font-style: normal;
+      font-weight: 600;
+      line-height: 54px;
+      color: white;
+      font-size: 50px;
+
+    }
+    #thanks_logo{
+      margin: 25px 0px 25px 0px;
+    }
+    #thanks_des{
+      font-family: 'Montserrat Alternates';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 45px;
+      color: #949395;
+      font-size: 30px;
+      text-align: center;
+      margin-top: 25px;
+      width:80%;
+    }
+    @media (max-width: 900px) {
+      #go_back{
+      float: left !important;
+      font-family: 'Montserrat Alternates';
+      font-style: normal;
+      font-weight: 600;
+      line-height: 35px;
+      font-size: 16px;
+      color: white;
+      border-bottom: 3px solid white;
+      position:absolute;
+      left: 35px;
+      top:30px;
+    }
+    #thanks{
+      font-family: 'Montserrat Alternates';
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px;
+      color: #F9A0DE;
+      font-size: 34px;
+
+    }
+    #thanks span{
+      font-family: 'Montserrat Alternates';
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px;
+      color: white;
+      font-size: 34px;
+
+    }
+    #thanks_logo{
+      margin: 25px 0px 25px 0px;
+    }
+    #thanks_des{
+      font-family: 'Montserrat Alternates';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 26px;
+      color: #949395;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 25px;
+      width:80%;
+    }
+    }
+  </style>
   <body>
-
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills float-right">
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'landing' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">Store</h3>
+    <div id="cont">
+      <div id="go_back">Back to home</div>
+      <div id="thanks_cont">
+        <div id="thanks">THANK <span>YOU!</span></div>
+        <img src="{% static 'img/thanks.svg' %}"  id="thanks_logo" alt="">
+        <div id="thanks_des">Thanks for choosing lexilot website builder, you can now start customizing your own portfolio !</div>
       </div>
-
-      <div class="jumbotron">
-        <h1 class="display-3">Thank You</h1>
-        <p class="lead">You will receive a link to The Product in your email.</p>
-      </div>
-
-      <footer class="footer">
-        <p>&copy; Store 2017</p>
-      </footer>
-
-    </div> <!-- /container -->
-
+    </div>
   </body>

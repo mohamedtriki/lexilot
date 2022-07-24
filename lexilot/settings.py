@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.sites',
     'crispy_forms',
     'allauth',
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,6 +126,10 @@ USE_TZ = True
 
 
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
 AUTHENTICATION_BACKENDS = [
       'django.contrib.auth.backends.ModelBackend',
       'allauth.account.auth_backends.AuthenticationBackend',
@@ -141,6 +148,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
@@ -148,6 +157,13 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-STRIPE_PUBLIC_KEY="pk_test_51LIpfFFnAE8Oxnma6Q0zaPOsMU5HID4ZYDfeKc1Kb2ewjZZ5RszNbewX5rz6lwrzHvToWJsAqqZGO25DMqFYBhzK00cR5fVKgl"
+STRIPE_PUBLIC_KEY="pk_live_51LIpfFFnAE8OxnmakxXbheTorANaFYabkh9toWZ31Ho6ClvQoJVi2mCz021q2kjXOXmqvh5P006YsWNOOofTQLVL005z1UXvqW"
 
-STRIPE_PRIVATE_KEY="sk_test_51LIpfFFnAE8OxnmanavzZgFcz3prQNLySrm0ojzDKiU5YOF8AHHBqv7wulEluo33sYHwteLIA2gl9rawu7UQzd5k00aCa3POEg"
+STRIPE_PRIVATE_KEY="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"
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'lexilot',
+    'API_KEY': '312965569619441',
+    'API_SECRET': '2UJag-UkItJabKFy_fcWatfBNqY'
+}

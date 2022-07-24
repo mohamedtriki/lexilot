@@ -260,7 +260,7 @@ def checkout(request):
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
-            'price': 'price_1LLPFKFnAE8OxnmaZbwdVyx2',
+            'price': 'price_1LOnfCFnAE8OxnmaKRo8i7nU',
             'quantity': 1,
         }],
         mode='payment',
@@ -278,7 +278,7 @@ def checkout2(request):
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
-            'price': 'price_1LLPFqFnAE8OxnmaT8L6gwnW',
+            'price': 'price_1LOngvFnAE8OxnmaJCpYNkQl',
             'quantity': 1,
         }],
         mode='payment',
@@ -296,7 +296,7 @@ def checkout3(request):
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
-            'price': 'price_1LLPGOFnAE8OxnmaHq2wlX58',
+            'price': 'price_1LOnhfFnAE8OxnmaMco4HD5C',
             'quantity': 1,
         }],
         mode='payment',

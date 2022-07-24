@@ -60,6 +60,7 @@ display: none;
 #logo{
     height: 20px;
     width: auto;
+    padding:0px 0px 5px 0px !important;
 }
 #logo_link{
     position: relative;
@@ -795,6 +796,8 @@ li a:hover {
     padding: 8px 16px 8px 16px;
     border-radius: 5px;
     margin-top: 20px;
+    background: #5E48E8;
+
 }
 .buy:hover{
     opacity: 0.7;
@@ -1401,4 +1404,26 @@ input[type=submit]:hover{
 #logout_img{
     height: 15px;
     width: auto;
+}
+a {
+    text-decoration: none !important;
+}
+
+a:visited {
+text-decoration: none !important;
+}
+
+a:hover {
+text-decoration: none !important;
+}
+
+a:active {
+text-decoration: none !important;
+}
+a {
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-thickness: initial;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
 }
